@@ -322,6 +322,9 @@
 313	common	finit_module		sys_finit_module
 314	common	sched_setattr		sys_sched_setattr
 315	common	sched_getattr		sys_sched_getattr
+#add by Luwei
+316	common	sched_sleep		sys_sched_sleep
+#end
 
 #
 # x32-specific system call numbers start at 512 to avoid cache impact
