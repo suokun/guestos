@@ -1079,6 +1079,12 @@ struct sched_entity {
 	//add by Kun
 	pid_t			pid;
 	char			comm[TASK_COMM_LEN];
+
+	u64			running_time;
+	u64			runnable_time;
+	u64			blocked_time;
+	u64 			offline_time;
+
 	//end
 
 #ifdef CONFIG_SCHEDSTATS
