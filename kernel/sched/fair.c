@@ -36,6 +36,7 @@
 
 
 //add by Kun
+#include <xen/interface/vcpu.h>
 extern DEFINE_PER_CPU(struct vcpu_runstate_info, xen_runstate);
 
 
