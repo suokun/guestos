@@ -73,6 +73,12 @@
 #include <linux/init_task.h>
 #include <linux/binfmts.h>
 #include <linux/context_tracking.h>
+//add by Luwei
+#include <xen/interface/sched.h>
+#include <asm/xen/hypercall.h>
+//end
+
+
 
 #include <asm/switch_to.h>
 #include <asm/tlb.h>
@@ -3098,6 +3104,19 @@ SYSCALL_DEFINE1(nice, int, increment)
 }
 
 #endif
+
+//add by Luwei
+#define MS_TO_NS(x)     (x * 1E6L)
+SYSCALL_DEFINE1(sched_sleep, int, timeout)
+{
+	struct sched_sleep sched_sleep;
+	sched_sleep.timeout = MS_TO_NS(timeout);
+	HYPERVISOR_sched_op(SCHEDOP_sleep, &sched_sleep);
+	return 0;
+}
+//end
+
+
 
 /**
  * task_prio - return the priority value of a given task.
