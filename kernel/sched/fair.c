@@ -732,6 +732,21 @@ static void update_curr(struct cfs_rq *cfs_rq)
 	if (unlikely((s64)delta_exec <= 0))
 		return;
 
+	//add by Kun
+	state = &__get_cpu_var(xen_runstate);
+	runnable = state->time[RUNSTATE_runnable];
+	offline = state->time[RUNSTATE_offline];
+
+	delta_runnable = runnable - curr->runnable_time;
+	delta_offline = offline - curr->offline_time;
+	delta_stolen = delta_runnable + delta_offline;
+
+	if (delta_exec > delta_stolen) {
+		delta_exec = delta_exec - delta_stolen;
+	}
+	//end
+
+
 	curr->exec_start = now;
 
 	schedstat_set(curr->statistics.exec_max,
