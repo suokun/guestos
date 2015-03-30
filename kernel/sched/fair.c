@@ -717,6 +717,14 @@ static void update_curr(struct cfs_rq *cfs_rq)
 	u64 now = rq_clock_task(rq_of(cfs_rq));
 	u64 delta_exec;
 
+	//add by Kun
+	struct vcpu_runstate_info *state;
+	u64 runnable, offline;
+	u64 delta_runnable, delta_offline;
+	u64 delta_stolen;
+	//end
+
+
 	if (unlikely(!curr))
 		return;
 
