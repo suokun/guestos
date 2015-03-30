@@ -1076,6 +1076,11 @@ struct sched_entity {
 
 	u64			nr_migrations;
 
+	//add by Kun
+	pid_t			pid;
+	char			comm[TASK_COMM_LEN];
+	//end
+
 #ifdef CONFIG_SCHEDSTATS
 	struct sched_statistics statistics;
 #endif
